@@ -1,0 +1,20 @@
+import cv2, numpy as np
+image_me = cv2.imread("images/me.jpg")
+image_email = cv2.imread("images/email.jpg")
+image_me = cv2.resize(image_me, (image_me.shape[1]//2, image_me.shape[0]//2))
+image_me = cv2.cvtColor(image_me, cv2.COLOR_BGR2GRAY)
+image_me = cv2.Canny(image_me, 40, 40)
+
+image_email = cv2.resize(image_email, (image_email.shape[1]//2, image_email.shape[0]//2))
+image_email = cv2.cvtColor(image_email, cv2.COLOR_BGR2GRAY)
+image_email = cv2.Canny(image_email, 200, 200)
+
+kernel = np.ones((5, 5), np.uint8)
+image_me = cv2.dilate(image_me, kernel, iterations=1)
+image_me_processed = cv2.imwrite("images/me_processed.jpg", image_me)
+image_email = cv2.dilate(image_email, kernel, iterations=1)
+image_email_processed = cv2.imwrite("images/email_processed.jpg", image_email)
+cv2.imshow("Image", image_me)
+cv2.imshow("Email Image", image_email)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
