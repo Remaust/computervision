@@ -1,6 +1,18 @@
 import cv2
 import numpy as np
 
+
+# Color        "Min [H,S,V]",  "Max [H,S,V]"
+# Red (Part 1) "[0, 100, 100]","[10, 255, 255]"
+# Orange       "[11, 100, 100]","[25, 255, 255]"
+# Yellow       "[26, 100, 100]","[35, 255, 255]"
+# Green        "[36, 100, 100]","[70, 255, 255]"
+# Blue         "[100, 100, 100]","[130, 255, 255]"
+# Violet       "[130, 100, 100]","[160, 255, 255]"
+# Red (Part 2) "[161, 100, 100]","[179, 255, 255]"
+
+
+
 cap = cv2.VideoCapture(0)
 
 lower_red1 = np.array([0, 100, 100])
@@ -49,4 +61,5 @@ while True:
         break
 
 cap.release()
+
 cv2.destroyAllWindows()
